@@ -71,6 +71,59 @@ class ModalFolderSuggest extends TextInputSuggest<TFolder> {
 	}
 }
 
+/**
+ * Suggests existing frontmatter values from other notes in the vault,
+ * matching Obsidian's native frontmatter autocomplete behavior.
+ */
+class FrontmatterValueSuggest extends TextInputSuggest<string> {
+	private getKey: () => string;
+
+	constructor(
+		app: App,
+		inputEl: HTMLInputElement | HTMLTextAreaElement,
+		getKey: () => string
+	) {
+		super(app, inputEl);
+		this.getKey = getKey;
+	}
+
+	getSuggestions(query: string): string[] {
+		const key = this.getKey()?.trim();
+		if (!key) return [];
+
+		const seen = new Set<string>();
+		const lowerQuery = query.toLowerCase();
+
+		for (const file of this.app.vault.getMarkdownFiles()) {
+			const cache = this.app.metadataCache.getFileCache(file);
+			const value = cache?.frontmatter?.[key];
+			if (value === undefined || value === null) continue;
+
+			const strings: string[] = Array.isArray(value)
+				? value.filter((v): v is string => typeof v === "string").map((s) => String(s).trim())
+				: [String(value).trim()];
+
+			for (const s of strings) {
+				if (s && !seen.has(s) && s.toLowerCase().includes(lowerQuery)) {
+					seen.add(s);
+				}
+			}
+		}
+
+		return Array.from(seen).sort().slice(0, 20);
+	}
+
+	renderSuggestion(value: string, el: HTMLElement): void {
+		el.setText(value);
+	}
+
+	selectSuggestion(value: string): void {
+		this.inputEl.value = value;
+		this.inputEl.trigger("input");
+		this.close();
+	}
+}
+
 interface FrontmatterField {
 	key: string;
 	value: string;
@@ -257,6 +310,7 @@ export class NoteCreatorModal extends Modal {
 						.onChange((value) => {
 							field.value = value;
 						});
+					new FrontmatterValueSuggest(this.app, text.inputEl, () => field.key);
 				});
 		}
 		this.updateActionButtons();
@@ -327,6 +381,7 @@ export class NoteCreatorModal extends Modal {
 				valueInput.addEventListener("input", () => {
 					property.value = valueInput.value;
 				});
+				new FrontmatterValueSuggest(this.app, valueInput, () => property.key);
 
 				const removeButton = row.createEl("button", {
 					text: "\u2715",
