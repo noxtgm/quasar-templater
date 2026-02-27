@@ -1,3 +1,5 @@
+![](https://github.com/noxtgm/note-templater/blob/master/demo.gif)
+
 # Note Templater
 
 Efficiently create notes from templates with auto-filled frontmatter using a GUI for [Obsidian](https://obsidian.md/). Setup templates by creating notes the usual way and create frontmatter properties in them. Easily create notes following a predefined template or create a custom template on the fly using the GUI. This can be useful to streamline the creation of notes following the same template and destination directory.
