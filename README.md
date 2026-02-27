@@ -1,18 +1,18 @@
-# Quasar Templater
+# Note Templater
 
-Efficiently create notes from templates with auto-filled frontmatter using a GUI for [Obsidian.md](https://obsidian.md/). Setup templates by creating notes the usual way and create frontmatter properties in them. Easily create notes following a predefined template or create a custom template on the fly using the GUI. This can be useful to streamline the creation of notes following the same template and destination directory.
+Efficiently create notes from templates with auto-filled frontmatter using a GUI for [Obsidian](https://obsidian.md/). Setup templates by creating notes the usual way and create frontmatter properties in them. Easily create notes following a predefined template or create a custom template on the fly using the GUI. This can be useful to streamline the creation of notes following the same template and destination directory.
 
 > [!NOTE]
 > This plugin can be paired with [SilentVoid13's templater](https://github.com/SilentVoid13/Templater) and is compatible with its variables and functions, which opens up more uses cases.
 
 ## 📖 Installation
 
-* Download the latest [release](https://github.com/noxtgm/quasar-templater/releases)
-* Extract the `quasar-templater` folder
+* Download the latest [release](https://github.com/noxtgm/note-templater/releases)
+* Extract the `note-templater` folder
 * Open your Obsidian settings → Community Plugins → Enable
 * Click on the folder icon next to `Installed plugins`
-* Drag and drop `quasar-templater` into Obsidian's `plugins` folder
-* Enable `quasar-templater` in the installed community plugins list
+* Drag and drop `note-templater` into Obsidian's `plugins` folder
+* Enable `note-templater` in the installed community plugins list
 
 ## 📄 License
 

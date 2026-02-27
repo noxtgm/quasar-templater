@@ -1,6 +1,6 @@
 {
-	"id": "quasar-templater",
-	"name": "QUASAR Templater",
+	"id": "note-templater",
+	"name": "Note Templater",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "Efficiently create notes from templates with auto-filled frontmatter using a GUI.",

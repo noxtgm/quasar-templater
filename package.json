@@ -1,5 +1,5 @@
 {
-  "name": "quasar-templater",
+  "name": "note-templater",
   "version": "1.0.0",
   "description": "Efficiently create notes from templates with auto-filled frontmatter using a GUI.",
   "main": "main.js",
